@@ -8,8 +8,19 @@ const {MONGOURI} = require('./keys');
 // register the model
 require('./models/user');
 
+// pass the incoming request to json
+app.use(express.json());
+
 // register the routes
-mongoose.connect(MONGOURI);
+app.use(require('./routes/auth'));
+
+
+
+// register the routes
+mongoose.connect(MONGOURI,{
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+});
 
 mongoose.connection.on('connected',()=>{
     console.log("Connected to mongo");
