@@ -20,7 +20,7 @@ app.listen(port, () => {
   console.log("Server is running on port ",port);
 });
 
-app.get('/about', (req, res) => {
+app.get('/about',customMiddleware, (req, res) => {
   console.log("About");
   res.send('About Page');
 });
