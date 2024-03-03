@@ -1,26 +1,22 @@
 const express = require('express');
 const app = express();
-
+const mongoose = require('mongoose');
 const port = 5000;
 
-const customMiddleware = (req, res, next) => {
-  console.log("Middleware Executed");
-  next();
-}
+const {MONGOURI} = require('./keys');
 
-// Passing the middleware to the app
-app.use(customMiddleware);
-
-app.get('/', (req, res) => {
-  console.log("Home");
-  res.send('Hello World');
+mongoose.connect(MONGOURI);
+mongoose.connection.on('connected',()=>{
+    console.log("Connected to mongo");
 });
+
+mongoose.connection.on('error',(err)=>{
+    console.log("Error connecting",err);
+});
+
+// 2htWQn73owpz7YOx
 
 app.listen(port, () => {
   console.log("Server is running on port ",port);
 });
 
-app.get('/about',customMiddleware, (req, res) => {
-  console.log("About");
-  res.send('About Page');
-});
