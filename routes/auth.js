@@ -6,6 +6,11 @@ const mongoose = require('mongoose');
 const User = mongoose.model("User");
 const bcrypt = require('bcryptjs');
 
+// jsonwebtoken package
+const jwt = require('jsonwebtoken');
+// JWT_SECRET is a string that you can set to anything you want. It's used to encode and decode the token.
+const {JWT_SECRET} = require('../keys');
+
 
 // Signup route
 
@@ -64,7 +69,15 @@ router.post('/signin',(req,res)=>{
         bcrypt.compare(password,savedUser.password)
         .then(doMatch=>{
             if(doMatch){
-                res.json({message:"Successfully signed in"});
+
+                // res.json({message:"Successfully signed in"});
+                
+                // Generating a token
+                const token = jwt.sign({_id:savedUser._id},JWT_SECRET);
+                
+                // Sending the token to the client
+                res.json({token});
+
             }
             else{
                 return res.status(422).json({error:"Invalid Email or password"});
