@@ -23,12 +23,15 @@ mongoose.connection.on('error',(err)=>{
 
 // register the model
 require('./models/user');
+// register the model
+require('./models/post');
 
 // pass the incoming request to json
 app.use(express.json());
 
 // register the routes
 app.use(require('./routes/auth'));
+app.use(require('./routes/post'));
 
 app.listen(port, () => {
   console.log("Server is running on port ",port);

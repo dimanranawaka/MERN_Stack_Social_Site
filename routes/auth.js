@@ -15,10 +15,10 @@ const {JWT_SECRET} = require('../keys');
 // Importing the middleware
 const requireLogin = require('../middleware/requireLogin');
 
-// Protected route
-router.get('/protected',requireLogin,(req,res)=>{
-    res.send("Hello user");
-});
+// // Protected route
+// router.get('/protected',requireLogin,(req,res)=>{
+//     res.send("Hello user");
+// });
 
 
 // Signup route
