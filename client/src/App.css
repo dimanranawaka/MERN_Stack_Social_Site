@@ -39,3 +39,16 @@ a{
     height: max-content;
     margin: 26px auto;
 }
+
+/* #socialname{
+    font-size: 20px;
+    font-weight: 500;
+    margin: 10;
+} */
+
+.brand-logo{
+    font-size: 30px;
+    font-weight: 500;
+    margin: 10;
+    margin-left: 2%;
+}
