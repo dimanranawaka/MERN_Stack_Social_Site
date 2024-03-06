@@ -2,7 +2,15 @@ import React from "react";
 
 const CreatePost = () => {
     return (
-        <div className="card input-filed">
+        <div className="card input-filed" style={
+            {
+                margin: "30px auto",
+                maxWidth: "500px",
+                padding: "20px",
+                textAlign: "center"
+            }
+        
+        }>
             <input type="text" placeholder="title"/>
             <input type="text" placeholder="body"/>
             <div className="file-field input-field">
