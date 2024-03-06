@@ -10,6 +10,7 @@ const Navbar = () => {
                     <li><Link to="/SignIn">SignIn</Link></li>
                     <li><Link to="/SignUp">SignUp</Link></li>
                     <li><Link to="/Profile">Profile</Link></li>
+                    <li><Link to="/Create">Create Post</Link></li>
                 </ul>
             </div>
         </nav>
