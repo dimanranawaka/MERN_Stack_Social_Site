@@ -15,8 +15,15 @@ const Profile = () => {
                 </div>
                 <div>
                     <h4>Diman Ranawaka</h4>
-                    <div>
-                        
+                    <div style={{
+                        display: "flex",
+                        justifyContent: "space-between",
+                        width: "108%"
+                    
+                    }}>
+                        <h5>50 posts</h5>
+                        <h5>50 followers</h5>
+                        <h5>50 following</h5>
                     </div>
                 </div>
             </div>
