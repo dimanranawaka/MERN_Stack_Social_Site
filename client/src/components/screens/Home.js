@@ -2,7 +2,11 @@ import React from "react";
 
 const Home = () => {
     return (
-        <h1>Home</h1>
+        <div className="home">
+            <div className="card home-card">
+                
+            </div>
+        </div>
     );
 };
 
