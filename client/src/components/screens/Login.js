@@ -3,7 +3,15 @@ import React from 'react';
 const Login = () => {
 
     return (
-        <h1>Login</h1>
+        <div>
+            <div class="card"> </div>
+            <input type="text" placeholder="email" />
+            <input type="text" placeholder="password" />
+
+            <button class="btn waves-effect waves-light">
+                Login
+            </button>
+        </div>
     );
 };
 
