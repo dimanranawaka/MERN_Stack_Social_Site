@@ -7,3 +7,10 @@ a{
 .brand-logo{
     font-family: 'Grand Hotel', cursive;
 }
+
+.auth-card{
+    max-width: 500px;
+    margin: 20px auto;
+    padding: 20px;
+    text-align: center;
+}
