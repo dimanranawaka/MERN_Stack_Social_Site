@@ -6,7 +6,7 @@ const SignIn = () => {
     return (
         <div className="mycard">
             <div className="card auth-card input-field">
-                <h2>Instagram</h2>
+                <h2>Dexter</h2>
                 <input type="text" placeholder="email" />
                 <input type="text" placeholder="password" />
 
