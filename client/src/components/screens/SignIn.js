@@ -26,8 +26,8 @@ const SignIn = () => {
             if(data.error){
                 M.toast({html: data.error, classes:"#c62828 red darken-3"})
             }else{
-                M.toast({html:data.message, classes:"#43a047 green darken-1"});
-                history.push('/SignIn');
+                M.toast({html:"Successfully Signed-In", classes:"#43a047 green darken-1"});
+                history.push('/');
             }
         }).catch(err=>{
             console.log(err);
