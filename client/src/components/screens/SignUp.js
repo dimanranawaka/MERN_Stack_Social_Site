@@ -1,11 +1,11 @@
-import React,{userState} from 'react';
+import React,{useState} from 'react';
 import {Link} from 'react-router-dom';
 
 const SignUp = () => {
 
-    const [name,setName] = userState("");
-    const [password,setPassword] = userState("");
-    const [email,setEmail] = userState("");
+    const [name,setName] = useState("");
+    const [password,setPassword] = useState("");
+    const [email,setEmail] = useState("");
 
     const PostData = ()=>{
         fetch("http:/localhost:5000/signup",{
