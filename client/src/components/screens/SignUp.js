@@ -1,5 +1,6 @@
 import React,{useState} from 'react';
 import {Link} from 'react-router-dom';
+import M from 'materialize-css';
 
 const SignUp = () => {
 
@@ -20,7 +21,9 @@ const SignUp = () => {
             })
         }).then(res=>res.json())
         .then(data=>{
-            console.log(data)
+            if(data.error){
+                M.toast({html: data.error, classes:"#c62828 red darken-3"})
+            }
         })
     }
 
