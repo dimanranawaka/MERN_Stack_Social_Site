@@ -1,4 +1,4 @@
-import React,{useState} from "react";
+import React,{useState,useEffect} from "react";
 import M from 'materialize-css';
 import {useHistory} from 'react-router-dom';
 
@@ -9,6 +9,38 @@ const CreatePost = () => {
     const [body,setBody] = useState("");
     const [image,setImage] = useState("");
     const [url,setUrl] = useState("");
+
+    // useEffect to post the data
+    useEffect(()=>{
+        
+        if(url){
+
+        fetch("/createpost",{
+            method:"post",
+            headers:{
+                "Content-Type":"application/json",
+
+                // add jwt token to the header
+                "Authorization":"Bearer "+localStorage.getItem("jwt")
+            },
+            body:JSON.stringify({
+                title,
+                body,
+                pic:url
+            })
+        }).then(res=>res.json())
+        .then(data=>{
+
+            if(data.error){
+                M.toast({html: data.error, classes:"#c62828 red darken-3"});
+            }else{
+                M.toast({html:"Successfully Created Post", classes:"#43a047 green darken-1"});
+                history.push('/');
+            }
+        })
+    }
+
+    },[url]);
 
     const postDetails = ()=>{
 
@@ -27,26 +59,7 @@ const CreatePost = () => {
         .catch(err=>{
             console.log(err);
         })
-        fetch("/createpost",{
-            method:"post",
-            headers:{
-                "Content-Type":"application/json",
-            },
-            body:JSON.stringify({
-                title,
-                body,
-                pic:url
-            })
-        }).then(res=>res.json())
-        .then(data=>{
-
-            if(data.error){
-                M.toast({html: data.error, classes:"#c62828 red darken-3"});
-            }else{
-                M.toast({html:"Successfully Created Post", classes:"#43a047 green darken-1"});
-                history.push('/');
-            }
-        })
+        
     }
 
 
