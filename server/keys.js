@@ -1,5 +1,5 @@
 module.exports = {
-    MONGOURI:"mongodb+srv://dimanranawaka:2htWQn73owpz7YOx@cluster0.u68x74v.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+    MONGOURI:"mongodb+srv://dreed:LsLq6GZtWdt8wkoV@cluster0.5rhgqzb.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
     ,
     JWT_SECRET:"effegeg"
 }

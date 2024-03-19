@@ -13,7 +13,7 @@ const SignIn = () => {
             M.toast({html: "Invalid email", classes:"#c62828 red darken-3"});
             return;
         }
-        fetch("/signup",{
+        fetch("/signin",{
             method:"post",
             headers:{
                 "Content-Type":"application/json"
@@ -24,6 +24,7 @@ const SignIn = () => {
             })
         }).then(res=>res.json())
         .then(data=>{
+            console.log(data);
             if(data.error){
                 M.toast({html: data.error, classes:"#c62828 red darken-3"})
             }else{
@@ -43,7 +44,7 @@ const SignIn = () => {
                 <input type="text" placeholder="email" value={email} onChange={(e)=>setEmail(e.target.value)}/>
                 <input type="text" placeholder="password" value={password} onChange={(e)=>setPassword(e.target.value)}/>
 
-                <button className="btn waves-effect waves-light #64b5f6 blue lighten-2">
+                <button className="btn waves-effect waves-light #64b5f6 blue lighten-2" onClick={()=>PostData()}>
                     Sign In
                 </button>
                 <h6>
