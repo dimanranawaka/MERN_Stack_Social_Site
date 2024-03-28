@@ -28,7 +28,7 @@ const Routing = () => {
 
       dispatch({ type: "USER", payload: user });
 
-      history.push('/');
+      // history.push('/');
 
     } else {
 
