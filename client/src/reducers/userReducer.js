@@ -12,6 +12,10 @@ export const reducer = (state, action) => {
         // If it is, return the payload of the action
         return action.payload;
     }
+    if (action.type === 'CLEAR') {
+        // If the action type is 'CLEAR', return null
+        return null;
+    }
     // If the action type is not 'USER', return the current state unchanged
     return state;
 
