@@ -3,20 +3,20 @@ const app = express();
 const mongoose = require('mongoose');
 const port = 5000;
 
-const {MONGOURI} = require('./keys');
+const { MONGOURI } = require('./keys');
 
 // register the routes
-mongoose.connect(MONGOURI,{
+mongoose.connect(MONGOURI, {
     useNewUrlParser: true,
     useUnifiedTopology: true
 });
 
-mongoose.connection.on('connected',()=>{
+mongoose.connection.on('connected', () => {
     console.log("Connected to mongo");
 });
 
-mongoose.connection.on('error',(err)=>{
-    console.log("Error connecting",err);
+mongoose.connection.on('error', (err) => {
+    console.log("Error connecting", err);
 });
 
 // 2htWQn73owpz7YOx
@@ -34,6 +34,6 @@ app.use(require('./routes/auth'));
 app.use(require('./routes/post'));
 
 app.listen(port, () => {
-  console.log("Server is running on port ",port);
+    console.log("Server is running on port ", port);
 });
 
