@@ -96,14 +96,15 @@ router.put('/comment', requireLogin, (req, res) => {
     })
         .populate("comments.postedBy", "_id name")
         .populate("postedBy", "_id name")
+        .exec()
         .then(result => {
-            res.json(result)
+            res.json(result);
         })
         .catch(err => {
             console.log(err);
-            return res.status(422).json({ error: err })
-        })
-})
+            return res.status(422).json({ error: err });
+        });
+});
 
 
 module.exports = router;
