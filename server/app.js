@@ -32,6 +32,7 @@ app.use(express.json());
 // register the routes
 app.use(require('./routes/auth'));
 app.use(require('./routes/post'));
+app.use(require('./routes/user'));
 
 app.listen(port, () => {
     console.log("Server is running on port ", port);
