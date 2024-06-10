@@ -24,6 +24,21 @@ const Profile = () => {
         })
     }, []);
 
+    const followUser = () => {
+        fetch('/follow', {
+            method: 'put',
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": "Bearer " + localStorage.getItem("jwt")
+            },
+            body: JSON.stringify({
+                followId: userid
+            })
+        }).then(res => res.json()).then(data => {
+            console.log(data);
+        })
+    }
+
     return (
         <>
             {userProfile ?
@@ -50,6 +65,9 @@ const Profile = () => {
                                 <h5>50 followers</h5>
                                 <h5>50 following</h5>
                             </div>
+                            <button className="btn waves-effect waves-light #64b5f6 blue lighten-2" onClick={() => followUser()}>
+                                follow
+                            </button>
                         </div>
                     </div>
 

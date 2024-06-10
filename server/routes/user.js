@@ -20,25 +20,24 @@ router.get('/user/:id', requireLogin, async (req, res) => {
     }
 });
 
-router.put('folow', requireLogin, (req, res) => {
-    User.findByIdAndUpdate(req.body.followId, {
-        $push: { followers: req.user._id }
-    }, {
-        new: true
-    }, (err, result) => {
-        if (err) {
-            return res.status(422).json({ error: err })
-        }
-        User.findByIdAndUpdate(req.user._id, {
-            $push: { following: req.body.followId }
+router.put('/follow', requireLogin, async (req, res) => {
+    try {
+        const userBeingFollowed = await User.findByIdAndUpdate(req.body.followId, {
+            $push: { followers: req.user._id }
+        }, {
+            new: true
+        });
 
-        }, { new: true }).then(result => {
-            res.json(result)
-        }).catch(err => {
-            return res.status(422).json({ error: err })
-        })
-    })
-})
+        const loggedInUser = await User.findByIdAndUpdate(req.user._id, {
+            $push: { following: req.body.followId }
+        }, { new: true });
+
+        res.json(loggedInUser);
+    } catch (err) {
+        console.log(err);
+        return res.status(422).json({ error: err });
+    }
+});
 
 router.put('unfolow', requireLogin, (req, res) => {
     User.findByIdAndUpdate(req.body.unfollowId, {
