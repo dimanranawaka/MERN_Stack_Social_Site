@@ -16,6 +16,13 @@ export const reducer = (state, action) => {
         // If the action type is 'CLEAR', return null
         return null;
     }
+    if (action.type === "UPDATE") {
+        return {
+            ...state,
+            followers: action.payload.followers,
+            following: action.payload.following
+        }
+    }
     // If the action type is not 'USER', return the current state unchanged
     return state;
 

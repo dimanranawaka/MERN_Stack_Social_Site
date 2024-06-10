@@ -6,6 +6,7 @@ const Profile = () => {
 
     // Define a state variable called mypics and a function called setPics to update the state variable. Initialize mypics to an empty array.
     const [userProfile, setProfile] = useState(null);
+    const [showfollow, setShowFollow] = useState(true);
 
     // Use the useContext Hook to access the UserContext. This gives us access to the state and dispatch function from the UserContext.
     const { state, dispatch } = useContext(UserContext);
@@ -36,7 +37,51 @@ const Profile = () => {
             })
         }).then(res => res.json()).then(data => {
             console.log(data);
+            dispatch({ type: "UPDATE", payload: { following: data.following, followers: data.followers } })
+            localStorage.setItem("user", JSON.stringify(data))
+            // shit logic
+            setProfile((prevState) => {
+                return {
+                    ...prevState,
+                    user: {
+                        ...prevState.user,
+                        followers: [...prevState.user.followers, data._id]
+                    }
+                }
+            })
+            setShowFollow(false);
         })
+    }
+
+    const unfollowUser = () => {
+        fetch('/unfollow', {
+            method: "put",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": "Bearer " + localStorage.getItem('jwt')
+            },
+            body: JSON.stringify({
+                unfollowId: userid
+            })
+        }).then(res => res.json())
+            .then(data => {
+
+                dispatch({ type: "UPDATE", payload: { following: data.following, followers: data.followers } })
+                localStorage.setItem("user", JSON.stringify(data))
+
+                setProfile((prevState) => {
+                    const newFollower = prevState.user.followers.filter(item => item != data._id)
+                    return {
+                        ...prevState,
+                        user: {
+                            ...prevState.user,
+                            followers: newFollower
+                        }
+                    }
+                })
+                setShowFollow(true)
+
+            })
     }
 
     return (
@@ -62,12 +107,20 @@ const Profile = () => {
                                 width: "108%"
                             }}>
                                 <h5>{userProfile.posts.length} posts</h5>
-                                <h5>50 followers</h5>
-                                <h5>50 following</h5>
+                                <h5>{userProfile.user.followers.length} followers</h5>
+                                <h5>{userProfile.user.following.length} following</h5>
                             </div>
-                            <button className="btn waves-effect waves-light #64b5f6 blue lighten-2" onClick={() => followUser()}>
-                                follow
-                            </button>
+                            {showfollow ?
+                                <button style={{ margin: "12px" }} className="btn waves-effect waves-light #64b5f6 blue lighten-2" onClick={() => followUser()}>
+                                    follow
+                                </button>
+                                :
+                                <button style={{ margin: "12px" }} className="btn waves-effect waves-light #64b5f6 blue lighten-2" onClick={() => unfollowUser()}>
+                                    unfollow
+                                </button>
+                            }
+
+
                         </div>
                     </div>
 
