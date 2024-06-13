@@ -19,6 +19,7 @@ const Navbar = () => {
             return [
                 <li><Link to="/Profile">Profile</Link></li>,
                 <li><Link to="/Create">Create Post</Link></li>,
+                <li><Link to="/myfollowerspost">My following Posts</Link></li>,
                 <li>
 
                     <button className="btn #c62828 red darken-3" onClick={() => (

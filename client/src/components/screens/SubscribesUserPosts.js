@@ -9,7 +9,7 @@ const Home = () => {
 
     // Fetching all posts
     useEffect(() => {
-        fetch('/allpost', {
+        fetch('/getsubpost', {
             headers: {
                 "Authorization": "Bearer " + localStorage.getItem("jwt")
             }
@@ -123,7 +123,7 @@ const Home = () => {
 
                     <div className="card home-card" key={item._id}>
 
-                        <h5><Link to={item.postedBy._id !== state._id ? "/profile/" + item.postedBy._id : "/profile/"}>{item.postedBy.name}</Link>{item.postedBy._id === state._id && <i className="material-icons" style={{ float: "right" }} onClick={() => deletePost(item._id)}>delete</i>}</h5>
+                        <h5 style={{ padding: "6px" }}><Link to={item.postedBy._id !== state._id ? "/profile/" + item.postedBy._id : "/profile/"}>{item.postedBy.name}</Link>{item.postedBy._id === state._id && <i className="material-icons" style={{ float: "right" }} onClick={() => deletePost(item._id)}>delete</i>}</h5>
                         <div className="card-image">
                             <img src={item.photo} />
                         </div>
