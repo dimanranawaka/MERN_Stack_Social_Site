@@ -23,6 +23,12 @@ export const reducer = (state, action) => {
             following: action.payload.following
         }
     }
+    if (action.type === "UPDATEPIC") {
+        return {
+            ...state,
+            pic: action.payload
+        }
+    }
     // If the action type is not 'USER', return the current state unchanged
     return state;
 
