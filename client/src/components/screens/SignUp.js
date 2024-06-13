@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import M from 'materialize-css';
 
@@ -9,6 +9,14 @@ const SignUp = () => {
     const [email, setEmail] = useState("");
     const [image, setImage] = useState("");
     const [url, setUrl] = useState("");
+
+    useEffect(() => {
+        // If url is not empty, then uploadFields() will be called
+        if (url) {
+            uploadFields();
+        }
+
+    }, [url]);
 
     const uploadPic = () => {
         const data = new FormData();
@@ -42,7 +50,8 @@ const SignUp = () => {
             body: JSON.stringify({
                 name,
                 password,
-                email
+                email,
+                pic: url
             })
         }).then(res => res.json())
             .then(data => {
