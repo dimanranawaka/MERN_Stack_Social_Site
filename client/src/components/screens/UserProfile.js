@@ -6,11 +6,14 @@ const Profile = () => {
 
     // Define a state variable called mypics and a function called setPics to update the state variable. Initialize mypics to an empty array.
     const [userProfile, setProfile] = useState(null);
-    const [showfollow, setShowFollow] = useState(true);
+
 
     // Use the useContext Hook to access the UserContext. This gives us access to the state and dispatch function from the UserContext.
     const { state, dispatch } = useContext(UserContext);
     const { userid } = useParams();
+
+    // this will make sure if current user following that the profile that he watches show unfollow button
+    const [showfollow, setShowFollow] = useState(state ? !state.following.includes(userid) : true);
 
     // console.log(userid);
     useEffect(() => {
