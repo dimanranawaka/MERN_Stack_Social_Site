@@ -1,16 +1,13 @@
 const express = require('express');
-
 const router = express.Router();
 const mongoose = require('mongoose');
-
 const User = mongoose.model("User");
 const bcrypt = require('bcryptjs');
-
-// jsonwebtoken package
 const jwt = require('jsonwebtoken');
-
-// JWT_SECRET is a string that you can set to anything you want. It's used to encode and decode the token.
 const { JWT_SECRET } = require('../keys');
+const nodeMailer = require('nodemailer');
+const sendgridTransport = require('nodemailer-sendgrid-transport');
+
 
 // Importing the middleware
 const requireLogin = require('../middleware/requireLogin');
@@ -20,6 +17,7 @@ const requireLogin = require('../middleware/requireLogin');
 //     res.send("Hello user");
 // });
 
+// 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
 
 // Signup route
 
