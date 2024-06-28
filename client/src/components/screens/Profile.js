@@ -7,10 +7,10 @@ const Profile = () => {
     const [mypics, setPics] = useState([]);
 
     // Use the useContext Hook to access the UserContext. This gives us access to the state and dispatch function from the UserContext.
-    const { state, dispatch } = useContext(UserContext);
+    const { state } = useContext(UserContext);
 
     const [image, setImage] = useState("");
-    const [url, setUrl] = useState("");
+    // const [url, setUrl] = useState("");
 
 
     useEffect(() => {
@@ -38,10 +38,23 @@ const Profile = () => {
             })
                 .then(res => res.json())
                 .then(data => {
-                    setUrl(data.url);
-                    console.log(data);
-                    localStorage.setItem("user", JSON.stringify({ ...state, pic: data.url }))
-                    dispatch({ type: "UPDATEPIC", payload: data.url })
+                    // setUrl(data.url);
+                    // localStorage.setItem("user", JSON.stringify({ ...state, pic: data.url }))
+                    // dispatch({ type: "UPDATEPIC", payload: data.url })
+                    fetch('/updatepic', {
+                        method: "put",
+                        headers: {
+                            "Content-Type": "application/json",
+                            "Authorization": "Bearer " + localStorage.getItem("jwt")
+                        },
+                        body: JSON.stringify({
+                            pic: data.url
+                        })
+                    }).then(res => res.json()).then(result => {
+                        console.log(result);
+                        localStorage.setItem("user", JSON.stringify({ ...state, pic: data.url }))
+                    })
+
                 })
                 .catch(err => {
                     console.log(err);
