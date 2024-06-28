@@ -59,7 +59,13 @@ router.put('/unfollow', requireLogin, async (req, res) => {
 });
 
 router.put('/updatepic', requireLogin, async (req, res) => {
-
+    try {
+        const result = await User.findByIdAndUpdate(req.user._id, {$set: {pic: req.body.pic}}, {new: true});
+        res.json(result);
+    } catch (err) {
+        console.log(err);
+        return res.status(422).json({error: "Pic cannot be updated"});
+    }
 });
 
 module.exports = router;
