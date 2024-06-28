@@ -58,4 +58,8 @@ router.put('/unfollow', requireLogin, async (req, res) => {
     }
 });
 
+router.put('/updatepic', requireLogin, async (req, res) => {
+
+});
+
 module.exports = router;
