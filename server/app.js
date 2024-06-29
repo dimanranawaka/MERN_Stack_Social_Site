@@ -11,10 +11,10 @@ mongoose.connect(MONGOURI, {
     useUnifiedTopology: true
 });
 
+// Event listener for successful connection or any errors during the connection to MongoDB
 mongoose.connection.on('connected', () => {
     console.log("Connected to mongo");
 });
-
 mongoose.connection.on('error', (err) => {
     console.log("Error connecting", err);
 });
@@ -23,7 +23,6 @@ mongoose.connection.on('error', (err) => {
 
 // register the model
 require('./models/user');
-// register the model
 require('./models/post');
 
 // pass the incoming request to json

@@ -41,7 +41,7 @@ router.post('/createpost', requireLogin, (req, res) => {
         title,
         body,
         photo: pic,
-        postedBy: req.user
+        postedBy: req.user // Set the postedBy field to the current authenticated user
     });
     post.save().then(result => {
         res.json({ post: result });
@@ -125,6 +125,7 @@ router.delete('/deletepost/:postId', requireLogin, async (req, res) => {
         if (!post) {
             return res.status(422).json({ error: "Post not found" });
         }
+        // Check if the current user is the owner of the post
         if (post.postedBy._id.toString() === req.user._id.toString()) {
             const result = await Post.deleteOne({ _id: req.params.postId });
             res.json(result);
