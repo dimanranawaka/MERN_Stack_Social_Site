@@ -1,6 +1,6 @@
 # 🌐 MERN Stack Social Site
 
-[![MERN Stack Social Site](./banner.gif)](https://github.com/dimanranawaka/MERN_Stack_Social_Site)
+[![MERN Stack Social Site](./Banner.gif)](https://github.com/dimanranawaka/MERN_Stack_Social_Site)
 
 <p align="center">
   <a href="https://github.com/dimanranawaka/MERN_Stack_Social_Site/issues">
