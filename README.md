@@ -109,5 +109,5 @@ For any inquiries or feedback, please contact:
 ---
 
 <p align="center">
-  Made 🧑‍💻 by <a href="https://github.com/dimanranawaka">Diman Ranawaka</a>
+  Made 🧑‍💻🛠️ by <a href="https://github.com/dimanranawaka">Diman Ranawaka</a>
 </p>
